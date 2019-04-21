@@ -35,7 +35,7 @@ bool sortfm(const results &a, const results &b)
 {
     return a.fpointsa > b.fpointsa;
 }
-void filegen(string fname,vector <results> &students,struct results resultss,int number)
+void filegen(string fname,deque <results> &students,struct results resultss,int number)
 {
     auto start = std::chrono::steady_clock::now();
     ofstream stud;
@@ -79,7 +79,7 @@ void filegen(string fname,vector <results> &students,struct results resultss,int
     }
     stud.close();
 }
-int firstntp(vector <results> &students)
+int firstntp(deque <results> &students)
 {
     int found;
     for(int i=students.size()-1; i>=0; i--)
@@ -91,7 +91,7 @@ int firstntp(vector <results> &students)
     }
     return found;
 }
-void vsplitting(vector <results> &students, struct results &resultss, string &fname1, string &fname2, string &fname3, int &number)
+void vsplitting(deque <results> &students, struct results &resultss, string &fname1, string &fname2, string &fname3, int &number)
 {
     auto start = std::chrono::steady_clock::now();
     filegen(fname1,students,resultss,number);
@@ -99,8 +99,8 @@ void vsplitting(vector <results> &students, struct results &resultss, string &fn
     sort(students.begin(),students.end(),sortfm);
     auto start2 = std::chrono::steady_clock::now();
     int i = firstntp(students);
-    vector <results> passed (students.begin(),students.begin()+i);
-    vector <results> notpassed (students.begin()+i+1,students.end());
+    deque <results> passed (students.begin(),students.begin()+i);
+    deque <results> notpassed (students.begin()+i+1,students.end());
     auto start3 = std::chrono::steady_clock::now();
     filegen(fname2,passed,resultss,passed.size());
     sort(students.begin(),students.end(),sortfm);

@@ -4,7 +4,7 @@
 
 int main()
 {
-    vector <results> students;
+    deque <results> students;
     results resultss;
 
     cout<<"1 - file generation using DEQUE"<<endl<<"2 - file generation using LIST"<<endl<<"-> ";

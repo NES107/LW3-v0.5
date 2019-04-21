@@ -2,7 +2,7 @@
 #define CPP_3_05_HEADER_H_INCLUDED
 
 #include <iostream>
-#include <vector>
+#include <deque>
 #include <string.h>
 #include <numeric>
 #include <iomanip>
@@ -20,7 +20,7 @@ struct results
 {
     string surname;
     string name;
-    vector <float> hwm;
+    deque <float> hwm;
     float examm;
     float average;
     float fpointsa;
@@ -32,8 +32,8 @@ void mean(struct results *resultss);
 void median(struct results *resultss);
 bool sortname(const results &a, const results &b);
 bool sortfm(const results &a, const results &b);
-void filegen(string fname, vector <results> &students,struct results resultss,int number);
-int firstntp(vector <results> &students);
-void vsplitting(vector <results> &students,  struct results &resultss, string &fname1, string &fname2, string &fname3, int &number);
+void filegen(string fname, deque <results> &students,struct results resultss,int number);
+int firstntp(deque <results> &students);
+void vsplitting(deque <results> &students,  struct results &resultss, string &fname1, string &fname2, string &fname3, int &number);
 
 #endif // CPP_3_05_HEADER_H_INCLUDED

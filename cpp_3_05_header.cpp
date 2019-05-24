@@ -1,5 +1,5 @@
 #include "cpp_3_05_header.h"
-
+#include <cmath>
 
 void mean(struct results *resultss)
 {
@@ -69,8 +69,10 @@ void vsplitting(deque <results> &students, struct results &resultss, string &fna
     deque <results> notpassed (students.begin()+i+1,students.end());
     filegen(fname2,passed,resultss,passed.size());
     filegen(fname3,notpassed,resultss,notpassed.size());
-    students.resize(0);
     auto start4 = std::chrono::steady_clock::now();
-    double elapsed_time_total = double(std::chrono::duration_cast <std::chrono::nanoseconds> (start4-start1).count());
-    cout<<"Speed of program(MBps): "<<((sizeof(results)*students.size())/(elapsed_time_total/1e9)/1e6)<<endl;
+    
+    double elapsed_time_total = double(std::chrono::duration_cast <std::chrono::milliseconds> (start4-start1).count());
+    cout<<setprecision(2)<<"Speed of program(MBps): "<<(((sizeof(results)*students.size())/pow(10, 6))/(elapsed_time_total/pow(10, 3)))<<endl;
+	cout<<setprecision(5)<<"time(s): "<<(elapsed_time_total/1000)<<endl;
+	students.resize(0);
 }

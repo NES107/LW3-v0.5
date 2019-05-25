@@ -3,6 +3,9 @@
 
 #include <iostream>
 #include <deque>
+#include <vector>
+#include <list>
+#include <iterator>
 #include <string.h>
 #include <numeric>
 #include <iomanip>
@@ -14,11 +17,12 @@
 #include <stdexcept>
 #include <chrono>
 
+
 using namespace std;
 
 struct results
 {
-    deque <float> hwm;
+    vector <float> hwm;
     string surname;
     string name;
     float examm;
@@ -29,10 +33,15 @@ struct results
 
 void mean(struct results *resultss);
 void median(struct results *resultss);
-void output1(deque <results> students);
 bool sortfm(const results &a, const results &b);
-void filegen(string fname,deque <results> &students,struct results resultss,int linenumber);
-int firstntp(deque <results> &students);
-void vsplitting(deque <results> &students,struct results &resultss,string &fname1,string &fname2,string &fname3,int linenumber);
+void filegenV(string fname,vector <results> &students,struct results resultss);
+void filegenD(string fname,deque <results> &students,struct results resultss);
+void filegenL(string fname,list <results> &students,struct results resultss);
+int firstntpV(vector <results> &students);
+int firstntpD(deque <results> &students);
+int firstntpL(list <results> &students);
+void vsplittingV(vector <results> &students,struct results &resultss,string &fname1,string &fname2,string &fname3,int linenumber);
+void vsplittingD(deque <results> &students,struct results &resultss,string &fname1,string &fname2,string &fname3,int linenumber);
+void vsplittingL(list <results> &students,struct results &resultss,string &fname1,string &fname2,string &fname3,int linenumber);
 
 #endif // CPP_3_05_HEADER_H_INCLUDED

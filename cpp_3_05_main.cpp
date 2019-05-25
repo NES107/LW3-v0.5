@@ -3,7 +3,9 @@
 
 int main()
 {
-    deque <results> students;
+    vector <results> studentsv;
+    deque <results> studentsd;
+    list <results> studentsl;
     results resultss;
 
     ifstream student_list;
@@ -31,14 +33,21 @@ int main()
         student_list>>resultss.examm;
         mean(&resultss);
         median(&resultss);
-        students.push_back (resultss);
+        studentsv.push_back (resultss);
+        studentsd.push_back (resultss);
+        studentsl.push_back (resultss);
         resultss.hwm.resize(0);
         linenumber++;
     }
     student_list.close();
     string fname2 = "students_passed.txt";
     string fname3 = "students_notpassed.txt";
-    vsplitting(students, resultss, fname1, fname2, fname3, linenumber);
+    cout<<"Vector parameters: "<<endl;
+    vsplittingV(studentsv, resultss, fname1, fname2, fname3, linenumber);
+    cout<<"Deque parameters: "<<endl;
+    vsplittingD(studentsd, resultss, fname1, fname2, fname3, linenumber);
+    cout<<"List parameters: "<<endl;
+    vsplittingD(studentsl, resultss, fname1, fname2, fname3, linenumber);
 
     return 0;
 }

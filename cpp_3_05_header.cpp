@@ -39,19 +39,13 @@ int firstntpD(deque <results> &students)
     }
     return found;
 }
-int firstntpL(list <results> &students)
+int firstntpL(list <results> &studentsl)
 {
-    int found;
-    for(list<results>::reverse_iterator it = students.rbegin(); it!=students.rend(); ++it)
-    {
-        int index;
-        if(it->fpointsa<5)
-        {
-            index =students.size() - std::distance(students.rbegin(), it);
-        }
-        found = *index;
-    }
-    return found;
+    auto it = find_if(studentsl.begin(), studentsl.end(),
+        [](const results &item){return item.fpointsa<5;});
+
+    int i = distance(studentsl.begin(), it);
+    return i;
 }
 void filegenV(string fname,vector <results> &students,struct results resultss, int linenumber)
 {
@@ -186,19 +180,16 @@ void filegenL(string fname,list <results> &students,struct results resultss)
 void vsplittingL(list <results> &students, struct results &resultss, string &fname1, string &fname2, string &fname3, int linenumber)
 {
     auto start1 = std::chrono::steady_clock::now();
-    sort(students.begin(),students.end(),sortfm);
+    students.sort(sortfm);
     int i = firstntpL(students);
+    list<results>passed;
+    passed.splice(passed.begin(),students,
+                     students.begin(),next(students.begin(),i));
 
-    //list<int>::reverse_iterator it = std::find(students.rbegin(), students.rend(), 5);
-    //int i = students.size()-(std::distance(students.rbegin(), it));
-
-    list <results> passed (students.begin(),students.begin()+i);
-    list <results> notpassed (students.begin()+i+1,students.end());
-    filegenL(fname2,passed,resultss,passed.size());
-    filegenL(fname3,notpassed,resultss,notpassed.size());
+    filegenL(fname2,passed,resultss);
+    filegenL(fname3,students,resultss);
     auto start4 = std::chrono::steady_clock::now();
     double elapsed_time_total = double(std::chrono::duration_cast <std::chrono::milliseconds> (start4-start1).count());
     cout<<setprecision(3)<<"Speed of program(MBps): "<<(((sizeof(results)*students.size())/1e6)/(elapsed_time_total/1e3))<<endl;
 	cout<<setprecision(3)<<"Time elapsed(s): "<<(elapsed_time_total/1e3)<<endl;
-	students.resize(0);
 }

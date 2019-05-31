@@ -42,12 +42,12 @@ int main()
     student_list.close();
     string fname2 = "students_passed.txt";
     string fname3 = "students_notpassed.txt";
-    cout<<"Vector parameters: "<<endl;
+    cout<<endl<<"Vector parameters: "<<endl;
     vsplittingV(studentsv, resultss, fname1, fname2, fname3, linenumber);
-    cout<<"Deque parameters: "<<endl;
+    cout<<endl<<"Deque parameters: "<<endl;
     vsplittingD(studentsd, resultss, fname1, fname2, fname3, linenumber);
-    cout<<"List parameters: "<<endl;
-    vsplittingD(studentsl, resultss, fname1, fname2, fname3, linenumber);
+    cout<<endl<<"List parameters: "<<endl;
+    vsplittingL(studentsl, resultss, fname1, fname2, fname3, linenumber);
 
     return 0;
 }

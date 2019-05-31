@@ -10,8 +10,24 @@ int main()
 
     ifstream student_list;
     string fname1;
-    cout<<"Enter file name(example: name.txt): ";
-    cin>>fname1;
+    do
+    {
+        try
+        {
+            cout<<"Enter file name(example: name.txt): ";
+            cin>>fname1;
+            throw runtime_error("Error in input!\n");
+        }catch(const runtime_error &e)
+        {
+            cout<<e.what();
+			cin.clear();
+			cin.ignore(256,'\n');
+			cout<<"Enter one more time"<<endl<<"-> ";
+			cin>>fname1;
+        }
+
+    }while(cin.fail()==true);
+
     student_list.open(fname1);
     if(!student_list.is_open())
     {

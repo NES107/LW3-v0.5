@@ -181,6 +181,7 @@ void vsplittingL(list <results> &students, struct results &resultss, string &fna
 {
     auto start1 = std::chrono::steady_clock::now();
     students.sort(sortfm);
+    int sz = students.size();
     int i = firstntpL(students);
     list<results>passed;
     passed.splice(passed.begin(),students,
@@ -190,6 +191,6 @@ void vsplittingL(list <results> &students, struct results &resultss, string &fna
     filegenL(fname3,students,resultss);
     auto start4 = std::chrono::steady_clock::now();
     double elapsed_time_total = double(std::chrono::duration_cast <std::chrono::milliseconds> (start4-start1).count());
-    cout<<setprecision(3)<<"Speed of program(MBps): "<<(((sizeof(results)*students.size())/1e6)/(elapsed_time_total/1e3))<<endl;
+    cout<<setprecision(3)<<"Speed of program(MBps): "<<(((sizeof(results)*sz)/1e6)/(elapsed_time_total/1e3))<<endl;
 	cout<<setprecision(3)<<"Time elapsed(s): "<<(elapsed_time_total/1e3)<<endl;
 }
